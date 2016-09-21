@@ -1,8 +1,8 @@
 # LibRubyDiff
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lib_ruby_diff`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Build Status](https://travis-ci.org/daveallie/lib_ruby_diff.svg?branch=master)](https://travis-ci.org/daveallie/lib_ruby_diff)
 
-TODO: Delete this and the text above, and describe your gem
+Simple Ruby bindings for librsync.
 
 ## Installation
 
@@ -22,7 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'lib_ruby_diff'
+
+# Create a signature file
+LibRubyDiff.signature(base_file_path, output_signature_file_path)
+
+# Create a delta file
+LibRubyDiff.delta(new_file_path, signature_file_path, output_delta_file_path)
+
+# Patch base file with delta
+LibRubyDiff.patch(base_file_path, delta_file_path, output_new_file_path)
+
+# After running these three commands, the files at
+# new_file_path and output_new_file_path should be
+# the same.
+```
 
 ## Development
 
@@ -34,8 +49,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lib_ruby_diff. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
