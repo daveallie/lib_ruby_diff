@@ -1,10 +1,17 @@
 sudo: required
 language: ruby
-rvm:
-  - 2.3.0
+matrix:
+  include:
+    - rvm: 2.0.0
+    - rvm: 2.1.10
+    - rvm: 2.2.6
+    - rvm: 2.3.3
+    - rvm: ruby-head
+  allow_failures:
+    - rvm: ruby-head
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y build-essential cmake libpopt-dev libbz2-dev libruby ruby-dev
+  - sudo apt-get install -y build-essential cmake libpopt-dev libbz2-dev libruby ruby-dev make get-deps
   - wget https://github.com/librsync/librsync/archive/v2.0.0.tar.gz
   - tar -xzvf v2.0.0.tar.gz
   - cd librsync-2.0.0 && cmake . && make && sudo make install
