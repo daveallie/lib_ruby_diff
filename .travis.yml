@@ -14,6 +14,8 @@ before_install:
   - sudo apt-get install -y build-essential cmake libpopt-dev libbz2-dev libruby ruby-dev
   - sudo updatedb
   - locate stdio.h
+  - locate stdlib.h
+  - locate librsync.h
   - wget https://github.com/librsync/librsync/archive/v2.0.0.tar.gz
   - tar -xzvf v2.0.0.tar.gz
   - cd librsync-2.0.0 && cmake . && make && sudo make install
