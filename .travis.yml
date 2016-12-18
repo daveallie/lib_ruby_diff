@@ -16,6 +16,7 @@ before_install:
   - tar -xzvf v2.0.0.tar.gz
   - cd librsync-2.0.0 && cmake . && make && sudo make install
   - gem install bundler -v 1.12.5
+  - sudo ldconfig
   - echo $LD_LIBRARY_PATH
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/include:/usr/include
 install:
