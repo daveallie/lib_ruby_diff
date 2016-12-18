@@ -12,13 +12,13 @@ matrix:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y build-essential cmake libpopt-dev libbz2-dev libruby ruby-dev
+  - wget https://github.com/librsync/librsync/archive/v2.0.0.tar.gz
+  - tar -xzvf v2.0.0.tar.gz
+  - cd librsync-2.0.0 && cmake . && make && sudo make install
   - sudo updatedb
   - locate stdio.h
   - locate stdlib.h
   - locate librsync.h
-  - wget https://github.com/librsync/librsync/archive/v2.0.0.tar.gz
-  - tar -xzvf v2.0.0.tar.gz
-  - cd librsync-2.0.0 && cmake . && make && sudo make install
   - gem install bundler -v 1.12.5
 install:
   - bundle install --jobs=3 --retry=3
