@@ -21,7 +21,7 @@ describe LibRubyDiff do
   it 'applies deltas correctly' do
     Dir.mktmpdir do |dir|
       empty = File.join(dir, 'empty.in')
-      File.write(empty, 'w'){|f|}
+      File.write(empty, 'w') { |f| }
       files = Dir['spec/deltas/*.delta']
       expect(files.length).to be > 0
 
