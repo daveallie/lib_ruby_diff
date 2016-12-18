@@ -73,30 +73,30 @@ static VALUE lib_ruby_diff_delta(VALUE self, VALUE new_file_path, VALUE signatur
 }
 
 static VALUE lib_ruby_diff_patch(VALUE self, VALUE base_file_path, VALUE delta_file_path, VALUE patched_file_path) {
-    FILE *base_file, *delta_file, *patched_file;
-    rs_stats_t stats;
-    rs_result result;
+  FILE *base_file, *delta_file, *patched_file;
+  rs_stats_t stats;
+  rs_result result;
 
-    base_file = fopen(StringValuePtr(base_file_path), "rb");
-    delta_file = fopen(StringValuePtr(delta_file_path), "rb");
-    patched_file = fopen(StringValuePtr(patched_file_path), "wb");
+  base_file = fopen(StringValuePtr(base_file_path), "rb");
+  delta_file = fopen(StringValuePtr(delta_file_path), "rb");
+  patched_file = fopen(StringValuePtr(patched_file_path), "wb");
 
-    if (!base_file || !delta_file || !patched_file) {
-      rb_raise(rb_eIOError, "Failed to open required files. Check they exist and you have the correct permissions.");
-      return Qnil;
-    }
-
-    result = rs_patch_file(base_file, delta_file, patched_file, &stats);
-    if (result != RS_DONE) {
-      rb_raise(rb_eStandardError, "Failed to create patched file.");
-      return Qnil;
-    }
-
-    fclose(base_file);
-    fclose(delta_file);
-    fclose(patched_file);
-
+  if (!base_file || !delta_file || !patched_file) {
+    rb_raise(rb_eIOError, "Failed to open required files. Check they exist and you have the correct permissions.");
     return Qnil;
+  }
+
+  result = rs_patch_file(base_file, delta_file, patched_file, &stats);
+  if (result != RS_DONE) {
+    rb_raise(rb_eStandardError, "Failed to create patched file.");
+    return Qnil;
+  }
+
+  fclose(base_file);
+  fclose(delta_file);
+  fclose(patched_file);
+
+  return Qnil;
 }
 
 void Init_lib_ruby_diff() {
